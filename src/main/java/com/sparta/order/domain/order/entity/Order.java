@@ -19,6 +19,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     // 주문은 하나의 상품을 참조함 ( N:1 단방향 )
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
@@ -33,7 +34,7 @@ public class Order {
     public Order(Product product, Integer quantity, LocalDateTime createdAt) {
         this.product = product;
         this.quantity = quantity;
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = createdAt;
     }
 
     // 정적 팩토리 메서드
