@@ -31,13 +31,13 @@
 ### 3. 원자적(Atomic) 재고 차감 (도전 과제)
 - **Situation**: 동시에 여러 주문이 들어올 경우, 재고를 읽고 차감하는 사이에 다른 요청이 끼어들어 재고가 마이너스가 되는 동시성 문제가 발생할 수 있다.
 - **Task**: 재고 차감이 원자적으로 처리되어 동시 요청에서도 데이터 정합성을 보장해야 했고
-- **Action**: 재고 차감과 주문 생성은 `Order.createOrder()` 정적 팩토리 메서드 안에서 함께 처리하고, `@Transactional`로 묶어 원자성을 보장했습니다.
-- **Result**: 재고가 0일 때 주문 생성이 차단되며, 재고 차감과 주문 생성이 하나의 트랜잭션으로 묶여 둘 중 하나라도 실패하면 전체가 롤백됩니다.
+- **Action**: 재고 차감과 주문 생성은 `Order.createOrder()` 정적 팩토리 메서드 안에서 함께 처리하고, `@Transactional`로 묶어 원자성을 보장
+- **Result**: 재고가 0일 때 주문 생성이 차단되며, 재고 차감과 주문 생성이 하나의 트랜잭션으로 묶여 둘 중 하나라도 실패하면 전체가 롤백된다.
 
 ---
 
 ## 📂 Project Structure
-도메인 중심의 계층화를 위해 `domain` 패키지에 핵심 로직을 모으고, 기술적 설정은 `config`에서 관리합니다.
+도메인 중심의 계층화를 위해 `domain` 패키지에 핵심 로직을 모으고, 기술적 설정은 `config`에서 관리한다.
 ```text
 src/main/java/com/sparta/order/
 ├── domain/                      # 비즈니스 핵심 (도메인별 응집)
@@ -86,4 +86,3 @@ docker-compose down
 
 ### 상품 재고 차감 구현
 ![상품재고차감구현](./docs/stock-deduct.PNG)
-![product-create.PNG](src/main/java/com/sparta/order/docs/product-create.PNG)
