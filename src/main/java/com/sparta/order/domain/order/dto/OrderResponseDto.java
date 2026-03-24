@@ -16,6 +16,9 @@ public class OrderResponseDto {
     @Schema(description = "주문 ID", example = "1")
     private Long id;
 
+    @Schema(description = "주문 상품 ID", example = "1")
+    private Long productId;
+
     @Schema(description = "주문 상품명(최신 정보 반영)", example = "아이폰 15 pro")
     private String productName;
 
@@ -29,6 +32,7 @@ public class OrderResponseDto {
     public static OrderResponseDto from(Order order) {
         return OrderResponseDto.builder()
                 .id(order.getId())
+                .productId(order.getProduct().getId())
                 .productName(order.getProduct().getName())
                 .quantity(order.getQuantity())
                 .createdAt(order.getCreatedAt())
