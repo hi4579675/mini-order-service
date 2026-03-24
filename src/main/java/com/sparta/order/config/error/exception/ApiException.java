@@ -1,6 +1,6 @@
-package com.sparta.order.cofing.error.exception;
+package com.sparta.order.config.error.exception;
 
-import com.sparta.order.cofing.error.status.BaseErrorCode;
+import com.sparta.order.config.error.status.BaseErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

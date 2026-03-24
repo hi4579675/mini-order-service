@@ -1,8 +1,8 @@
 package com.sparta.order.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sparta.order.cofing.error.status.BaseCode;
-import com.sparta.order.cofing.error.status.BaseErrorCode;
+import com.sparta.order.config.error.status.BaseCode;
+import com.sparta.order.config.error.status.BaseErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

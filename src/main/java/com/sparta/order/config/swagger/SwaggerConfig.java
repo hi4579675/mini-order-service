@@ -1,4 +1,4 @@
-package com.sparta.order.cofing.swqgger;
+package com.sparta.order.config.swagger;
 
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.OpenAPI;

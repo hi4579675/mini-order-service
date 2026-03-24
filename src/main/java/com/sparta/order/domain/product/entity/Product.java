@@ -1,7 +1,7 @@
 package com.sparta.order.domain.product.entity;
 
-import com.sparta.order.cofing.error.exception.ApiException;
-import com.sparta.order.cofing.error.status.ErrorStatus;
+import com.sparta.order.config.error.exception.ApiException;
+import com.sparta.order.config.error.status.ErrorStatus;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

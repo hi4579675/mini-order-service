@@ -1,4 +1,4 @@
-package com.sparta.order.cofing.error.dto;
+package com.sparta.order.config.error.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 @Builder
 public class ResponseDto {
     private final HttpStatus httpStatus;
-    private final boolean isSuccess;
     private final String code;
     private final String message;
 }

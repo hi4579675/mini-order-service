@@ -1,6 +1,6 @@
-package com.sparta.order.cofing.error.status;
+package com.sparta.order.config.error.status;
 
-import com.sparta.order.cofing.error.dto.ResponseDto;
+import com.sparta.order.config.error.dto.ResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
