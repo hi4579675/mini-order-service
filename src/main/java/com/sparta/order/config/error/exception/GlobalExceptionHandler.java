@@ -1,6 +1,6 @@
-package com.sparta.order.cofing.error.exception;
+package com.sparta.order.config.error.exception;
 
-import com.sparta.order.cofing.error.status.ErrorStatus;
+import com.sparta.order.config.error.status.ErrorStatus;
 import com.sparta.order.common.response.ApiResponse;
 import com.sparta.order.common.response.FieldErrorDetail;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +40,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(ErrorStatus.INVALID_REQUEST.getHttpStatus())
                 .body(new ApiResponse<>(
                         false,
-                        ErrorStatus.INTERNAL_SERVER_ERROR.getCode(),
-                        ErrorStatus.INTERNAL_SERVER_ERROR.getMessage(),
+                        ErrorStatus.INVALID_REQUEST.getCode(),
+                        ErrorStatus.INVALID_REQUEST.getMessage(),
                         fieldErrors
                 ));
     }
