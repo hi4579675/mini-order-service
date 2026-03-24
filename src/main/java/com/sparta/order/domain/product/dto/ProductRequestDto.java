@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor // JSON 역직렬화를 위해 필요
 public class ProductRequestDto {
     @Schema(description = "상품명", example = "아이폰 15 Pro")
-    @NotBlank(message = "상품 명은 필수입니다.")
+    @NotBlank(message = "상품 명은 필수입니다.") // → String 필드엔 @NotBlank
     private String name;
 
     @Schema(description = "가격", example = "1500000")

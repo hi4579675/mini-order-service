@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor // 모든 필드를 받는 생성자
+@NoArgsConstructor // 기본 생성자 -> Jackson이 JSON을 역직렬화할 때 필요
 public class OrderRequestDto {
 
     @Schema(description = "주문할 상품 ID", example = "1")
-    @NotNull(message = "상품 ID는 필수입니다.")
-    private Long id;
+    @NotNull(message = "상품 ID는 필수입니다.") //@Valid와 함께 써야 동작?
+    private Long id; //Controller에서 @Valid ~ 이렇게 사용
 
     @Schema(description = "주문 수량", example = "1")
     @NotNull(message = "주문 수량은 필수입니다.")

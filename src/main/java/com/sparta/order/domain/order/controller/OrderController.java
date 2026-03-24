@@ -18,21 +18,26 @@ import org.springframework.data.domain.Page;
 
 
 @Tag(name = "Order API", description = "주문 관련 API")
-@RestController
+@RestController // @Controller + @ResponseBody를 합친 것, 모든 메서드의 반환값을 JSON으로 직렬화해서 HTTP 응답 body에 담는다.
 @RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
+// final 필드만 받는 생성자 자동 생성, Spring 생성자 주입 방식으로 OrderService를 자동으로 주입해줌
 public class OrderController {
     private final OrderService orderService;
 
     @Operation(summary = "주문 생성", description = "상품 ID를 이용해 주문을 생성합니다.")
     @PostMapping
-    public ResponseEntity<ApiResponse<Long>> createOrder(@Valid @RequestBody OrderRequestDto orderRequestDto) {
+    public ResponseEntity<ApiResponse<Long>> createOrder
+            (@Valid @RequestBody OrderRequestDto orderRequestDto) {
+        // @RequestBody: HTTP 요청 body의 JSON을 OrderRequestDto로 역직렬화
+        // @Valid: OrderRequestDto의 @NotNull, @Min 등 검증 어노테이션 실행
         return ApiResponse.onSuccess(SuccessStatus.CREATE, orderService.createOrder(orderRequestDto));
     }
 
     @Operation(summary = "주문 단건 조회", description = "주문 정보와 함께 최신 상품명을 조회합니다..")
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<OrderResponseDto>> getOrder(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<OrderResponseDto>> getOrder(
+            @PathVariable Long id) { // @PathVariable: URL의 {id} 부분을 메서드 파라미터로 바인딩
         return ApiResponse.onSuccess(SuccessStatus.OK, orderService.getOrder(id));
     }
 
@@ -40,9 +45,10 @@ public class OrderController {
     @Operation(summary = "주문 목록 조회 (Page)", description = "전체 주문 목록을 페이지네이션으로 조회합니다. 총 페이지 수와 전체 개수를 포함합니다.")
     @GetMapping
     public ResponseEntity<ApiResponse<Page<OrderResponseDto>>> getOrders(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "0") int page, // @RequestParam: URL 쿼리 파라미터(?page=0) 바인딩
             @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
+        // PageRequest.of(page, size): 몇 번째 페이지, 몇 개씩 가져올지 설정
         Page<OrderResponseDto> response = orderService.getOrderPage(pageable);
         return ApiResponse.onSuccess(SuccessStatus.OK, response);
     }
@@ -53,7 +59,8 @@ public class OrderController {
     public ResponseEntity<ApiResponse<Slice<OrderResponseDto>>> getOrdersSlice(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        Slice<OrderResponseDto> response = orderService.getOrderSlice(page, size);
+        Pageable pageable = PageRequest.of(page, size);
+        Slice<OrderResponseDto> response = orderService.getOrderSlice(pageable);
         return ApiResponse.onSuccess(SuccessStatus.OK, response);
     }
 

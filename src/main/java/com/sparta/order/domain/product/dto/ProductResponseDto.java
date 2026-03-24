@@ -11,19 +11,17 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ProductResponseDto {
+    // ResponseDto는 서버가 만들어서 내보내는 것 → 부가적인 어노테이션 다 삭제함 @Min @Notnull 이런것
     @Schema(description = "상품 ID", example = "1")
     private Long id;
 
     @Schema(description = "상품명", example = "아이폰 15 pro")
-    @NotBlank(message = "상품명은 필수 입력 항목입니다.")
     private String name;
 
     @Schema(description = "가격", example = "1500000")
-    @Min(value = 0, message = "가격은 0원 이상이어야 합니다.")
     private Long price;
 
     @Schema(description = "초기 재고", example = "100")
-    @Min(value = 0, message = "재고는 0개 이상이어야 합니다.")
     private Integer stock;
 
     @Builder
